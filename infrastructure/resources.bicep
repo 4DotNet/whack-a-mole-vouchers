@@ -1,5 +1,6 @@
 param defaultResourceName string
 param location string
+param storageAccountQueues array
 param storageAccountTables array
 param containerVersion string
 param environmentName string
@@ -40,13 +41,21 @@ resource storageAccountTable 'Microsoft.Storage/storageAccounts/tableServices/ta
   name: table
   parent: storageAccountTableService
 }]
+resource storageAccountQueueService 'Microsoft.Storage/storageAccounts/queueServices@2021-09-01' = {
+  name: 'default'
+  parent: storageAccount
+}
+resource storageAccountQueue 'Microsoft.Storage/storageAccounts/queueServices/queues@2021-09-01' = [for queue in storageAccountQueues: {
+  name: queue
+  parent: storageAccountQueueService
+}]
 
 module storageAccountConfigurationValue 'configuration-value.bicep' = {
   name: 'storageAccountConfigurationValue'
   scope: resourceGroup(integrationEnvironment.resourceGroup)
   params: {
     appConfigurationName: integrationEnvironment.appConfiguration
-    settingName: 'AzureServices:UsersStorageAccountName'
+    settingName: 'AzureServices:VouchersStorageAccountName'
     settingValue: storageAccount.name
   }
 }
@@ -56,7 +65,7 @@ module serviceNameConfigurationValue 'configuration-value.bicep' = {
   scope: resourceGroup(integrationEnvironment.resourceGroup)
   params: {
     appConfigurationName: integrationEnvironment.appConfiguration
-    settingName: 'Services:UsersService'
+    settingName: 'Services:VouchersService'
     settingValue: apiContainerApp.name
   }
 }

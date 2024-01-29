@@ -21,6 +21,10 @@ param corsHostnames array
 
 var apiResourceGroupName = toLower('${systemName}-${environmentName}-${locationAbbreviation}')
 
+var storageAccountQueues = [
+  'vouchersToValidate'
+]
+
 var storageAccountTables = [
   'vouchers'
 ]
@@ -36,6 +40,7 @@ module vouchersResourcesModule 'resources.bicep' = {
   params: {
     defaultResourceName: apiResourceGroupName
     location: location
+    storageAccountQueues: storageAccountQueues
     storageAccountTables: storageAccountTables
     containerAppName: systemName
     containerVersion: containerVersion
