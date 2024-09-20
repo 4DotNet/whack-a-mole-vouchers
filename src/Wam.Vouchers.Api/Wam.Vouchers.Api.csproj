@@ -4,26 +4,15 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <InvariantGlobalization>true</InvariantGlobalization>
-    <UserSecretsId>d4133894-e990-462f-a9e6-67000c372194</UserSecretsId>
+    <UserSecretsId>7f2155d9-1080-4f77-80ba-27401f9a4854</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="HexMaster.RedisCache" Version="0.1.6" />
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Azure" Version="1.7.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.AzureAppConfiguration" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="8.0.1" />
-    <PackageReference Include="Microsoft.Identity.Web" Version="2.16.1" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-    <PackageReference Include="Wam.Core" Version="0.1.12" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Wam.Vouchers\Wam.Vouchers.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.8" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.3" />
+    <PackageReference Include="Wam.Core" Version="0.2.3" />
   </ItemGroup>
 
 </Project>
