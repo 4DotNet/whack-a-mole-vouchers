@@ -1,1 +1,1 @@
-# whack-a-mole-vouchers
+# whack-a-mole-vouchers.
