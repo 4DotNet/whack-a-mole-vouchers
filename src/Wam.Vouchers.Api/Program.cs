@@ -4,6 +4,7 @@ using Wam.Core.Configuration;
 using Wam.Core.ExtensionMethods;
 using Wam.Core.Filters;
 using Wam.Core.Identity;
+using Wam.Vouchers.ExtensionMethods;
 
 var corsPolicyName = "DefaultCors";
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,7 @@ try
     builder.Configuration.AddAzureAppConfiguration(options =>
     {
         var appConfigurationUrl = builder.Configuration.GetRequiredValue("AzureAppConfiguration");
+        Console.WriteLine($"Waiting for configuration values from {appConfigurationUrl}");
         options.Connect(new Uri(appConfigurationUrl), azureCredential)
             .UseFeatureFlags();
     });
@@ -28,7 +30,8 @@ catch (Exception ex)
 //    .AddStandardResilienceHandler();
 
 builder.Services
-    .AddWamCoreConfiguration(builder.Configuration, false, nameof(ServicesConfiguration.VouchersService));
+    .AddWamCoreConfiguration(builder.Configuration, false, nameof(ServicesConfiguration.VouchersService))
+    .AddWamVouchersModule();
 
 builder.Services.AddCors(options =>
 {
