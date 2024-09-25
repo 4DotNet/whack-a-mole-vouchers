@@ -17,7 +17,7 @@ namespace Wam.Vouchers.Api.Controllers
             return Ok(voucherInfo);
         }
 
-        [HttpPut("{id:guid}/claim/{playerId:guid}")]
+        [HttpGet("{id:guid}/claim/{playerId:guid}")]
         public async Task<IActionResult> Claim(Guid id, Guid playerId)
         {
             var voucherClaimed = await service.ClaimVoucher(id, playerId, HttpContext.RequestAborted);
